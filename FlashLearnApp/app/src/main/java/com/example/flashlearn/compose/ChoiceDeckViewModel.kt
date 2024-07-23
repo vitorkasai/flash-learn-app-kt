@@ -4,10 +4,10 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.flashlearn.repository.Card
-import com.example.flashlearn.repository.CardRepository
+import com.example.flashlearn.repository.DeckRepository
 import kotlinx.coroutines.launch
 
-class ChoiceDeckViewModel(private val deckRepository: CardRepository: ScoreRepository) : ViewModel() {
+class ChoiceDeckViewModel(private val deckRepository: DeckRepository) : ViewModel() {
 
     var cards = mutableStateListOf<Card>()
 

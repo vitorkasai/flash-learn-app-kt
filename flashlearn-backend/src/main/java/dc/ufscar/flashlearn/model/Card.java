@@ -1,14 +1,13 @@
 package dc.ufscar.flashlearn.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(schema = "flashlearn", name = "tb_card")
@@ -26,5 +25,6 @@ public class Card {
 
     @ManyToOne
     @JoinColumn(name = "id_deck", nullable = false)
+    @JsonBackReference
     private Deck deck;
 }

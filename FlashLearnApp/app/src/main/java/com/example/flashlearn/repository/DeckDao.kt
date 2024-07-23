@@ -7,6 +7,8 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface DeckDao {
 
+    fun getAllDecks(): List<Deck>
+
     //@Query("SELECT * FROM Card ORDER BY time ASC LIMIT 1")
     //suspend fun getBestScore(): Score
 

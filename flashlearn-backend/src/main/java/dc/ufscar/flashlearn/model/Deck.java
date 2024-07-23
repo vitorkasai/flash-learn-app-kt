@@ -1,16 +1,15 @@
 package dc.ufscar.flashlearn.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(schema = "flashlearn", name = "tb_deck")
@@ -20,9 +19,11 @@ public class Deck {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "tx_categoria", nullable = false)
+    @Column(name = "tx_categoria", nullable = false, unique = true)
     private String category;
 
     @OneToMany(mappedBy = "deck", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Card> cards;
+
 }
