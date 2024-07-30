@@ -93,9 +93,10 @@ fun App(navController: NavHostController = rememberNavController()) {
                     onAddDeck = {
                         navController.navigate("add-deck")
                     },
-                    onDeckSelected = { cards ->
+                    onDeckSelected = { deckName, cards ->
+                        navController.currentBackStackEntry?.savedStateHandle?.set("deckName", deckName)
                         navController.currentBackStackEntry?.savedStateHandle?.set("cards", cards)
-                        navController.navigate("cards-revision")
+                        navController.navigate("deck-detail")
                     }
                 )
             }
@@ -106,6 +107,19 @@ fun App(navController: NavHostController = rememberNavController()) {
                         navController.popBackStack()
                     }
                 )
+            }
+            composable("deck-detail") {
+                val deckName = navController.previousBackStackEntry?.savedStateHandle?.get<String>("deckName")
+                val cards = navController.previousBackStackEntry?.savedStateHandle?.get<List<Card>>("cards")
+                deckName?.let { name ->
+                    cards?.let {
+                        DeckDetailScreen(
+                            deckName = name,
+                            cards = it,
+                            onNavigateUp = { navController.navigateUp() }
+                        )
+                    }
+                }
             }
         }
     }

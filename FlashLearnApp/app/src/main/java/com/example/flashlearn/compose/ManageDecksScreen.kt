@@ -25,7 +25,7 @@ fun ManageDecksScreen(
     manageDecksViewModel: ManageDecksViewModel = viewModel(),
     onNavigateUp: () -> Unit = {},
     onAddDeck: () -> Unit = {},
-    onDeckSelected: (cards: List<Card>) -> Unit
+    onDeckSelected: (deckName: String, cards: List<Card>) -> Unit
 ) {
     LaunchedEffect(Unit) {
         manageDecksViewModel.refreshDecks()
@@ -49,7 +49,7 @@ fun ManageDecksScreen(
             items(manageDecksViewModel.deckList) { deck ->
                 DeckItem(
                     category = deck.category,
-                    onDeckClick = { onDeckSelected(deck.cards) }
+                    onDeckClick = { onDeckSelected(deck.category, deck.cards) }
                 )
             }
         }
