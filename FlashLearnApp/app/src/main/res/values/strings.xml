@@ -6,6 +6,8 @@
     <string name="lbl_bt_clear_all">Clear all records</string>
     <string name="lbl_clear_all">All %d records were removed!</string>
     <string name="lbl_welcome_msg">Bem-vindo ao Flash Learn App, aqui você pode usar flash cards virtuais para estudos e memorização</string>
+    <string name="end_revision">Fim da revisão</string>
+    <string name="return_to_decks">Voltar para cartões</string>
     <string name="title_activity_game">GameActivity</string>
     <string name="lbl_none">empty</string>
     <string name="title_activity_escore">ScoreActivity</string>

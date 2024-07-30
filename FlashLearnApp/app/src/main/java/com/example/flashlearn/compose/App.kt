@@ -51,7 +51,11 @@ fun App(navController: NavHostController = rememberNavController()) {
             composable("display-decks") {
                 ChoiceDeckScreen(
                     choiceDeckViewModel,
-                    onNavigateUp = { navController.navigateUp() },
+                    onNavigateUp = {
+                        navController.navigate("init") {
+                            popUpTo("init") { inclusive = true }
+                        }
+                    },
                     onDeckSelected = { cards ->
                         navController.currentBackStackEntry?.savedStateHandle?.set("cards", cards)
                         navController.navigate("deck-details")
@@ -63,9 +67,15 @@ fun App(navController: NavHostController = rememberNavController()) {
                 cards?.let {
                     DeckDetailScreen(
                         cards = it,
-                        onNavigateUp = { navController.navigateUp() }
+                        onNavigateUp = { navController.navigateUp() },
+                        navController = navController
                     )
                 }
+            }
+            composable("end-revision") {
+                EndRevisionScreen(
+                    onBackToDecks = { navController.navigate("display-decks") }
+                )
             }
             composable("manage-decks") { }
         }

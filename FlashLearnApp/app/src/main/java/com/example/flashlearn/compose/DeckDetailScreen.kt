@@ -15,16 +15,25 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.flashlearn.R
 import com.example.flashlearn.repository.model.Card
 
 @Composable
 fun DeckDetailScreen(
     cards: List<Card>,
-    onNavigateUp: () -> Unit = {}
+    onNavigateUp: () -> Unit = {},
+    navController: NavController
 ) {
     var currentCardIndex by remember { mutableIntStateOf(0) }
     var isBackVisible by remember { mutableStateOf(false) }
+    var isNextEnabled by remember { mutableStateOf(false) }
+
+    if (currentCardIndex >= cards.size) {
+        navController.navigate("end-revision")
+        return
+    }
+
     val currentCard = cards[currentCardIndex]
 
     Column(
@@ -47,7 +56,10 @@ fun DeckDetailScreen(
             )
         }
         Button(
-            onClick = { isBackVisible = !isBackVisible }
+            onClick = {
+                isBackVisible = !isBackVisible
+                isNextEnabled = true
+            }
         ) {
             Text(text = "Virar")
         }
@@ -57,8 +69,12 @@ fun DeckDetailScreen(
                 if (currentCardIndex < cards.size - 1) {
                     currentCardIndex++
                     isBackVisible = false
+                    isNextEnabled = false
+                } else {
+                    navController.navigate("end-revision")
                 }
-            }
+            },
+            enabled = isNextEnabled
         ) {
             Text(text = "Próximo Cartão")
         }

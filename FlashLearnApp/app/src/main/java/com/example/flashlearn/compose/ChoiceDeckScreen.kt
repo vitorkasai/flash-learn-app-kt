@@ -20,7 +20,7 @@ import com.example.flashlearn.repository.model.Card
 
 @Composable
 fun ChoiceDeckScreen(
-    choiceDeckViewmodel: ChoiceDeckViewModel = viewModel(),
+    choiceDeckViewModel: ChoiceDeckViewModel = viewModel(),
     onNavigateUp: () -> Unit = {},
     onDeckSelected: (cards: List<Card>) -> Unit
 ) {
@@ -28,7 +28,9 @@ fun ChoiceDeckScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Row {
-            Button(onClick = onNavigateUp) {
+            Button(onClick = {
+                onNavigateUp()
+            }) {
                 Text(text = stringResource(id = R.string.lbl_bt_back))
             }
             Spacer(modifier = Modifier.size(20.dp))
@@ -38,10 +40,9 @@ fun ChoiceDeckScreen(
             style = MaterialTheme.typography.headlineSmall
         )
         LazyColumn {
-            itemsIndexed(choiceDeckViewmodel.deckList) { index, item ->
+            itemsIndexed(choiceDeckViewModel.deckList) { _, item ->
                 DeckItem(
                     category = item.category,
-                    cards = item.cards,
                     onDeckClick = { onDeckSelected(item.cards) }
                 )
             }
