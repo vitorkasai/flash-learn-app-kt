@@ -7,7 +7,7 @@ import com.example.flashlearn.repository.DeckRepository
 
 /**
  * REQUIREMENT:
- * You need to specify attribute android:name=".GameApplication" in AndroidManifest.xml
+ * You need to specify attribute android:name=".FlashLearnApplication" in AndroidManifest.xml
  * Otherwise, this class is not initialized
  */
 class FlashLearnApplication : Application() {
@@ -25,7 +25,7 @@ class FlashLearnApplication : Application() {
 /**
  * We want to limit the visibility of Android-related objects to ViewModels and Composable.
  *
- * So, we attach here the repositories to a GameApplication object
+ * So, we attach here the repositories to a FlashLearnApplication object
  *    so that we can retrieve them in the AppViewModelProvider.
  */
 class AppContainer(private val context: Context) {

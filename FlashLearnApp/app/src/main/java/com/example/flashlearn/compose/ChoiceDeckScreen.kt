@@ -31,7 +31,7 @@ fun ChoiceDeckScreen(
             Button(onClick = {
                 onNavigateUp()
             }) {
-                Text(text = stringResource(id = R.string.lbl_bt_back))
+                Text(text = stringResource(id = R.string.lbl_bt_back_homescreen))
             }
             Spacer(modifier = Modifier.size(20.dp))
         }

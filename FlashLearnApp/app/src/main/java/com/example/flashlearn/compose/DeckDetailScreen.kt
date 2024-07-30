@@ -41,7 +41,7 @@ fun DeckDetailScreen(
     ) {
         Row {
             Button(onClick = onNavigateUp) {
-                Text(text = stringResource(id = R.string.lbl_bt_back))
+                Text(text = stringResource(id = R.string.lbl_bt_quit))
             }
             Spacer(modifier = Modifier.size(20.dp))
         }

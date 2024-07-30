@@ -8,7 +8,7 @@ import com.example.flashlearn.FlashLearnApplication
 
 
 /**
- * Provides Factory to create instance of ViewModel for the entire Game app
+ * Provides Factory to create instance of ViewModel for the entire FlashLearn app
  */
 object AppViewModelProvider {
     val Factory = viewModelFactory {

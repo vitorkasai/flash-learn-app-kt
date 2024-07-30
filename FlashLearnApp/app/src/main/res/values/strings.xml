@@ -1,21 +1,12 @@
 <resources>
     <string name="app_name">Flash Learn App</string>
-    <string name="lbl_bt_start">Iniciar revisão</string>
-    <string name="lbl_bt_score">Gerenciar pilhas</string>
+    <string name="lbl_bt_start_revision">Iniciar revisão</string>
+    <string name="lbl_bt_manage_decks">Gerenciar pilhas</string>
     <string name="lbl_bt_back">Voltar</string>
-    <string name="lbl_bt_clear_all">Clear all records</string>
-    <string name="lbl_clear_all">All %d records were removed!</string>
+    <string name="lbl_bt_quit">Sair da revisão</string>
+    <string name="lbl_bt_back_homescreen">Voltar para a tela inicial</string>
     <string name="lbl_welcome_msg">Bem-vindo ao Flash Learn App, aqui você pode usar flash cards virtuais para estudos e memorização</string>
     <string name="end_revision">Fim da revisão</string>
-    <string name="return_to_decks">Voltar para cartões</string>
-    <string name="title_activity_game">GameActivity</string>
-    <string name="lbl_none">empty</string>
-    <string name="title_activity_escore">ScoreActivity</string>
+    <string name="return_to_decks">Voltar para visualizar as pilhas</string>
     <string name="lbl_card_decks">Escolha uma pilha de cartões</string>
-    <string name="lbl_played">Played by:</string>
-    <string name="lbl_none_before">No one played before.</string>
-    <string name="dlg_title">End of the game</string>
-    <string name="dlg_time_msg">Your time was %.2f seconds.</string>
-    <string name="dlg_new_record_msg">New record!!!</string>
-    <string name="dlg_ok">OK</string>
 </resources>

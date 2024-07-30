@@ -14,9 +14,9 @@ class DeckRepository {
         if (response.isSuccessful) {
             response.body()?.let {
                 emit(it)
-            } ?: throw Exception("No decks found")
+            } ?: throw Exception("Não foram encontrados decks")
         } else {
-            throw Exception("Failed to fetch decks: ${response.message()}")
+            throw Exception("Falha ao retornar decks: ${response.message()}")
         }
     }
 
