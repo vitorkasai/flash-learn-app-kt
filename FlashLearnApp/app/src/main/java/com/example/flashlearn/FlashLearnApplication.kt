@@ -3,15 +3,14 @@ package com.example.flashlearn
 import android.app.Application
 import android.content.Context
 import android.util.Log
-import com.example.flashlearn.repository.GameDatabase
-import com.example.flashlearn.repository.ScoreRepository
+import com.example.flashlearn.repository.DeckRepository
 
 /**
  * REQUIREMENT:
  * You need to specify attribute android:name=".GameApplication" in AndroidManifest.xml
  * Otherwise, this class is not initialized
  */
-class GameApplication : Application() {
+class FlashLearnApplication : Application() {
 
     // instance to obtain dependencies
     lateinit var container: AppContainer
@@ -19,7 +18,7 @@ class GameApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         container = AppContainer(this)
-        Log.i("GameApplication", "onCreate")
+        Log.i("FlashLearnApplication", "onCreate")
     }
 }
 
@@ -30,7 +29,7 @@ class GameApplication : Application() {
  *    so that we can retrieve them in the AppViewModelProvider.
  */
 class AppContainer(private val context: Context) {
-    val scoreRepository : ScoreRepository by lazy {
-        ScoreRepository(GameDatabase.getDatabase(context).scoreDao())
+    val deckRepository: DeckRepository by lazy {
+        DeckRepository()
     }
 }

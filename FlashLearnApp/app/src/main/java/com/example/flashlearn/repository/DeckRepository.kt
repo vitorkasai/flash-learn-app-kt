@@ -1,15 +1,22 @@
 package com.example.flashlearn.repository
 
+import com.example.flashlearn.repository.retrofit.BackendInterface
+import com.example.flashlearn.repository.retrofit.RetrofitInstance
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
-class DeckRepository(private val deckDao: DeckDao) {
-    fun getAllDecks(): List<Deck> = deckDao.
+class DeckRepository {
+    private var client: BackendInterface = RetrofitInstance.api
 
-    suspend fun insertScore(score: Score) = scoreDao.insert(score)
+    suspend fun getAllDecks(): Flow<List<Deck>> = flow {
+        val response = client.getAllDecks()
+        if (response.isSuccessful) {
+            response.body()?.let {
+                emit(it)
+            } ?: throw Exception("No decks found")
+        } else {
+            throw Exception("Failed to fetch decks: ${response.message()}")
+        }
+    }
 
-    suspend fun deleteAllScores() = scoreDao.deleteAllScores()
-
-    fun getAllScores(): Flow<List<Score>> = scoreDao.getAllScores()
-
-    suspend fun getBestScore(): Score = scoreDao.getBestScore()
 }

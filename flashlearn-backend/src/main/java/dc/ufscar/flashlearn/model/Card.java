@@ -27,4 +27,5 @@ public class Card {
     @JoinColumn(name = "id_deck", nullable = false)
     @JsonBackReference
     private Deck deck;
+
 }

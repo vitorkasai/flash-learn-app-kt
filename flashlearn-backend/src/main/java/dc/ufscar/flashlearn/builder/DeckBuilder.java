@@ -1,13 +1,14 @@
 package dc.ufscar.flashlearn.builder;
 
+import dc.ufscar.flashlearn.dto.CreateDeckDTO;
 import dc.ufscar.flashlearn.dto.DeckDTO;
 import dc.ufscar.flashlearn.model.Deck;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class DeckBuilder {
 
-    public Deck build(DeckDTO dto) {
+    public Deck build(CreateDeckDTO dto) {
         return Deck.builder()
                 .category(dto.getCategory())
                 .build();

@@ -6,9 +6,7 @@ import java.time.LocalDateTime
 
 @Entity
 data class Deck(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+    val id: Int,
     val category: String,
-    val cards: List<Card>,
-    val includeDateTime: LocalDateTime
+    val cards: List<Card>
 )

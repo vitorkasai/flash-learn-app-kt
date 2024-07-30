@@ -2,9 +2,9 @@ package dc.ufscar.flashlearn.builder;
 
 import dc.ufscar.flashlearn.dto.CardDTO;
 import dc.ufscar.flashlearn.model.Card;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class CardBuilder {
 
     public Card build(CardDTO dto) {

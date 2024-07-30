@@ -23,9 +23,7 @@ import com.example.flashlearn.ui.theme.FlashCardApp_Theme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun App(navController: NavHostController = rememberNavController()) {
-    val revisionViewModel: RevisionViewModel = viewModel(factory = AppViewModelProvider.Factory)
     val choiceDeckViewModel: ChoiceDeckViewModel = viewModel(factory = AppViewModelProvider.Factory)
-    val deckViewModel: DeckViewModel = viewModel(factory = AppViewModelProvider.Factory)
 
     Scaffold(
         topBar = {
@@ -46,26 +44,18 @@ fun App(navController: NavHostController = rememberNavController()) {
         ) {
             composable("init") {
                 Init(
-                    onStartButtonClicked = {
-                        choiceDeckViewModel.
-                        revisionViewModel.startRevision()
-                        navController.navigate("start-revision")
-                    },
-                    onManageDecksButtonClicked = { navController.navigate("decks") }
+                    onStartButtonClicked = { navController.navigate("display-decks") },
+                    onManageDecksButtonClicked = { navController.navigate("manage-decks") }
                 )
             }
-            composable("start-revision") {
-                Game(
-                    revisionViewModel,
-                    onNavigateUp = { navController.navigateUp() }
-                )
-            }
-            composable("decks") {
+            composable("display-decks") {
                 ChoiceDeckScreen(
-                    deckViewModel,
+                    choiceDeckViewModel,
                     onNavigateUp = { navController.navigateUp() }
                 )
+
             }
+            composable("manage-decks") { }
         }
     }
 }

@@ -1,6 +1,7 @@
 package dc.ufscar.flashlearn.service;
 
 import dc.ufscar.flashlearn.builder.DeckBuilder;
+import dc.ufscar.flashlearn.dto.CreateDeckDTO;
 import dc.ufscar.flashlearn.dto.DeckDTO;
 import dc.ufscar.flashlearn.model.Deck;
 import dc.ufscar.flashlearn.repository.DeckRepository;
@@ -20,8 +21,8 @@ public class DeckService {
         return decks.stream().map(deckBuilder::build).toList();
     }
 
-    public void createDeck(DeckDTO deckDTO) {
-        Deck deckDomain = deckBuilder.build(deckDTO);
+    public void createDeck(CreateDeckDTO createDeckDTO) {
+        Deck deckDomain = deckBuilder.build(createDeckDTO);
         deckRepository.save(deckDomain);
     }
 

@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.flashlearn.GameApplication
+import com.example.flashlearn.FlashLearnApplication
 
 
 /**
@@ -15,16 +15,10 @@ object AppViewModelProvider {
 
         // Initializer for GameViewModel
         initializer {
-            RevisionViewModel(gameApplication().container.scoreRepository)
+            ChoiceDeckViewModel(flashLearnApplication().container.deckRepository)
         }
-
-        // Initializer for ScoreViewModel
-        initializer {
-            DeckViewModel(gameApplication().container.scoreRepository)
-        }
-
     }
 }
 
-fun CreationExtras.gameApplication(): GameApplication =
-    (this[AndroidViewModelFactory.APPLICATION_KEY] as GameApplication)
+fun CreationExtras.flashLearnApplication(): FlashLearnApplication =
+    (this[AndroidViewModelFactory.APPLICATION_KEY] as FlashLearnApplication)

@@ -21,7 +21,7 @@ import com.example.flashlearn.ui.theme.FlashCardApp_Theme
 
 @Composable
 fun ChoiceDeckScreen(
-    deckViewModel: DeckViewModel = viewModel(),
+    choiceDeckViewmodel: ChoiceDeckViewModel = viewModel(),
     onNavigateUp: () -> Unit = {}
 ) {
     Column(
@@ -32,32 +32,20 @@ fun ChoiceDeckScreen(
                 Text(text = stringResource(id = R.string.lbl_bt_back))
             }
             Spacer(modifier = Modifier.size(20.dp))
-            Button(onClick = { deckViewModel.clearAllRecords() }) {
-                Text(text = stringResource(id = R.string.lbl_bt_clear_all))
-            }
         }
         Text(
             text = stringResource(id = R.string.lbl_card_decks),
             style = MaterialTheme.typography.headlineMedium
         )
-        if (deckViewModel.scores.size == 0)
-            Text(
-                text = stringResource(id = R.string.lbl_none_before),
-                style = MaterialTheme.typography.bodyLarge
-            )
-        else
-            LazyColumn {
-                itemsIndexed(deckViewModel.scores) { index, item ->
-                    ScoreCard(
-                        position = index+1,
-                        name = item.playerName,
-                        gameTime = item.time,
-                        whenPlayed = item.whenPlayed
-                    )
-                }
+        LazyColumn {
+            itemsIndexed(choiceDeckViewmodel.deckList) { index, item ->
+                DeckItem(
+                    category = item.category,
+                    cards = item.cards
+                )
             }
+        }
     }
-
 }
 
 @Preview(showBackground = true)
