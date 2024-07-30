@@ -13,16 +13,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.flashlearn.R
-import com.example.flashlearn.ui.theme.FlashCardApp_Theme
+import com.example.flashlearn.repository.model.Card
 
 @Composable
 fun ChoiceDeckScreen(
     choiceDeckViewmodel: ChoiceDeckViewModel = viewModel(),
-    onNavigateUp: () -> Unit = {}
+    onNavigateUp: () -> Unit = {},
+    onDeckSelected: (cards: List<Card>) -> Unit
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -35,23 +35,16 @@ fun ChoiceDeckScreen(
         }
         Text(
             text = stringResource(id = R.string.lbl_card_decks),
-            style = MaterialTheme.typography.headlineMedium
+            style = MaterialTheme.typography.headlineSmall
         )
         LazyColumn {
             itemsIndexed(choiceDeckViewmodel.deckList) { index, item ->
                 DeckItem(
                     category = item.category,
-                    cards = item.cards
+                    cards = item.cards,
+                    onDeckClick = { onDeckSelected(item.cards) }
                 )
             }
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DeckPreview() {
-    FlashCardApp_Theme {
-        ChoiceDeckScreen()
     }
 }

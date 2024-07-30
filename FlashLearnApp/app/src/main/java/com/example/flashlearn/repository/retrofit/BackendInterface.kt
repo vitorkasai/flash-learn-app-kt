@@ -1,7 +1,6 @@
 package com.example.flashlearn.repository.retrofit
 
-import com.example.flashlearn.repository.Deck
-import kotlinx.coroutines.flow.Flow
+import com.example.flashlearn.repository.model.Deck
 import retrofit2.Response
 import retrofit2.http.GET
 

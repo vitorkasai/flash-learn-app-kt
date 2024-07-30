@@ -9,7 +9,7 @@
     <string name="title_activity_game">GameActivity</string>
     <string name="lbl_none">empty</string>
     <string name="title_activity_escore">ScoreActivity</string>
-    <string name="lbl_card_decks">Pilhas de cartões</string>
+    <string name="lbl_card_decks">Escolha uma pilha de cartões</string>
     <string name="lbl_played">Played by:</string>
     <string name="lbl_none_before">No one played before.</string>
     <string name="dlg_title">End of the game</string>

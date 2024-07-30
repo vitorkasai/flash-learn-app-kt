@@ -1,5 +1,6 @@
 package com.example.flashlearn.repository
 
+import com.example.flashlearn.repository.model.Deck
 import com.example.flashlearn.repository.retrofit.BackendInterface
 import com.example.flashlearn.repository.retrofit.RetrofitInstance
 import kotlinx.coroutines.flow.Flow

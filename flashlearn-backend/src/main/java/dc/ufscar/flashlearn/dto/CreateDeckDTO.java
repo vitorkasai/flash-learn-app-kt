@@ -1,12 +1,10 @@
 package dc.ufscar.flashlearn.dto;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Builder
 @Getter
 @Setter
+@RequiredArgsConstructor
 public class CreateDeckDTO {
     private String category;
 }

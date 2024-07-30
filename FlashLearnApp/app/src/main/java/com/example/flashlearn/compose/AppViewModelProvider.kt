@@ -12,8 +12,6 @@ import com.example.flashlearn.FlashLearnApplication
  */
 object AppViewModelProvider {
     val Factory = viewModelFactory {
-
-        // Initializer for GameViewModel
         initializer {
             ChoiceDeckViewModel(flashLearnApplication().container.deckRepository)
         }

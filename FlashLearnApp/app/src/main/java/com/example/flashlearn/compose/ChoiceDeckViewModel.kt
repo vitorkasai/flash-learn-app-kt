@@ -3,7 +3,7 @@ package com.example.flashlearn.compose
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.flashlearn.repository.Deck
+import com.example.flashlearn.repository.model.Deck
 import com.example.flashlearn.repository.DeckRepository
 import kotlinx.coroutines.launch
 

@@ -1,8 +1,6 @@
-package com.example.flashlearn.repository
+package com.example.flashlearn.repository.model
 
 import androidx.room.Entity
-import androidx.room.PrimaryKey
-import java.time.LocalDateTime
 
 @Entity
 data class Deck(
