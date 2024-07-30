@@ -16,6 +16,9 @@ public class CardService {
     private final DeckService deckService;
 
     public void createCard(CardDTO cardDTO) {
+        System.out.println(cardDTO.getDeckCategory());
+        System.out.println(cardDTO.getBack());
+        System.out.println(cardDTO.getFront());
         Card cardDomain = cardBuilder.build(cardDTO);
         Deck deckFound = deckService.findDeckByCategory(cardDTO.getDeckCategory());
         cardDomain.setDeck(deckFound);

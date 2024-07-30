@@ -13,4 +13,7 @@ interface BackendInterface {
 
     @POST("deck")
     suspend fun createDeck(@Body requestBody: RequestBody): Response<Void>
+
+    @POST("card")
+    suspend fun createCard(@Body requestBody: RequestBody): Response<Void>
 }

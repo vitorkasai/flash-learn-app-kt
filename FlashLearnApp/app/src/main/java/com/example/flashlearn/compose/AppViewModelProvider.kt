@@ -21,6 +21,9 @@ object AppViewModelProvider {
         initializer {
             AddDeckViewModel(flashLearnApplication().container.deckRepository)
         }
+        initializer {
+            AddCardViewModel(flashLearnApplication().container.cardRepository)
+        }
     }
 }
 

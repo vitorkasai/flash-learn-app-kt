@@ -3,6 +3,7 @@ package com.example.flashlearn
 import android.app.Application
 import android.content.Context
 import android.util.Log
+import com.example.flashlearn.repository.CardRepository
 import com.example.flashlearn.repository.DeckRepository
 
 /**
@@ -31,5 +32,8 @@ class FlashLearnApplication : Application() {
 class AppContainer(private val context: Context) {
     val deckRepository: DeckRepository by lazy {
         DeckRepository()
+    }
+    val cardRepository: CardRepository by lazy {
+        CardRepository()
     }
 }

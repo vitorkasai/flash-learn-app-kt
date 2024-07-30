@@ -14,9 +14,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.flashlearn.R
 import com.example.flashlearn.repository.model.Card
 
@@ -24,8 +26,10 @@ import com.example.flashlearn.repository.model.Card
 @Composable
 fun App(navController: NavHostController = rememberNavController()) {
     val choiceDeckViewModel: ChoiceDeckViewModel = viewModel(factory = AppViewModelProvider.Factory)
-    val manageDecksViewModel: ManageDecksViewModel = viewModel(factory = AppViewModelProvider.Factory)
-    val addDecksViewModel: AddDeckViewModel = viewModel(factory = AppViewModelProvider.Factory)
+    val manageDecksViewModel: ManageDecksViewModel =
+        viewModel(factory = AppViewModelProvider.Factory)
+    val addDeckViewModel: AddDeckViewModel = viewModel(factory = AppViewModelProvider.Factory)
+    val addCardViewModel: AddCardViewModel = viewModel(factory = AppViewModelProvider.Factory)
 
     Scaffold(
         topBar = {
@@ -94,7 +98,10 @@ fun App(navController: NavHostController = rememberNavController()) {
                         navController.navigate("add-deck")
                     },
                     onDeckSelected = { deckName, cards ->
-                        navController.currentBackStackEntry?.savedStateHandle?.set("deckName", deckName)
+                        navController.currentBackStackEntry?.savedStateHandle?.set(
+                            "deckName",
+                            deckName
+                        )
                         navController.currentBackStackEntry?.savedStateHandle?.set("cards", cards)
                         navController.navigate("deck-detail")
                     }
@@ -102,24 +109,47 @@ fun App(navController: NavHostController = rememberNavController()) {
             }
             composable("add-deck") {
                 AddDeckScreen(
-                    addDecksViewModel,
+                    addDeckViewModel,
+                    onNavigateBack = { navController.navigateUp() },
                     onDeckAdded = {
                         navController.popBackStack()
                     }
                 )
             }
             composable("deck-detail") {
-                val deckName = navController.previousBackStackEntry?.savedStateHandle?.get<String>("deckName")
-                val cards = navController.previousBackStackEntry?.savedStateHandle?.get<List<Card>>("cards")
+                val deckName =
+                    navController.previousBackStackEntry?.savedStateHandle?.get<String>("deckName")
+                val cards =
+                    navController.previousBackStackEntry?.savedStateHandle?.get<List<Card>>("cards")
                 deckName?.let { name ->
                     cards?.let {
                         DeckDetailScreen(
                             deckName = name,
                             cards = it,
-                            onNavigateUp = { navController.navigateUp() }
+                            onNavigateUp = { navController.navigateUp() },
+                            onAddCard = {
+                                navController.navigate("add-card/$name")
+                            }
                         )
                     }
                 }
+            }
+            composable(
+                route = "add-card/{category}",
+                arguments = listOf(navArgument("category") { type = NavType.StringType })
+            ) { backStackEntry ->
+                val category = backStackEntry.arguments?.getString("category") ?: ""
+                AddCardScreen(
+                    category = category,
+                    onCardAdded = { front, back ->
+                        addCardViewModel.addCard(
+                            category,
+                            front,
+                            back
+                        )
+                    },
+                    onNavigateUp = { navController.navigateUp() }
+                )
             }
         }
     }
