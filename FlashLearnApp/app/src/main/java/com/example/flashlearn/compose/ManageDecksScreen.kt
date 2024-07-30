@@ -3,13 +3,15 @@ package com.example.flashlearn.compose
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -19,33 +21,42 @@ import com.example.flashlearn.R
 import com.example.flashlearn.repository.model.Card
 
 @Composable
-fun ChoiceDeckScreen(
-    choiceDeckViewModel: ChoiceDeckViewModel = viewModel(),
+fun ManageDecksScreen(
+    manageDecksViewModel: ManageDecksViewModel = viewModel(),
     onNavigateUp: () -> Unit = {},
+    onAddDeck: () -> Unit = {},
     onDeckSelected: (cards: List<Card>) -> Unit
 ) {
+    LaunchedEffect(Unit) {
+        manageDecksViewModel.refreshDecks()
+    }
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
     ) {
         Row {
-            Button(onClick = {
-                onNavigateUp()
-            }) {
-                Text(text = stringResource(id = R.string.lbl_bt_back_homescreen))
+            Button(onClick = onNavigateUp) {
+                Text(text = stringResource(id = R.string.lbl_bt_back))
             }
             Spacer(modifier = Modifier.size(20.dp))
         }
         Text(
-            text = stringResource(id = R.string.lbl_card_decks),
-            style = MaterialTheme.typography.headlineSmall
+            text = stringResource(id = R.string.lbl_manage_decks),
+            style = MaterialTheme.typography.headlineMedium
         )
         LazyColumn {
-            itemsIndexed(choiceDeckViewModel.deckList) { _, deck ->
+            items(manageDecksViewModel.deckList) { deck ->
                 DeckItem(
                     category = deck.category,
                     onDeckClick = { onDeckSelected(deck.cards) }
                 )
             }
+        }
+        Spacer(modifier = Modifier.size(20.dp))
+
+        Button(onClick = onAddDeck) {
+            Text(text = stringResource(id = R.string.lbl_bt_add_deck))
         }
     }
 }

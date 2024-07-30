@@ -9,4 +9,9 @@
     <string name="end_revision">Fim da revisão</string>
     <string name="return_to_decks">Voltar para visualizar as pilhas</string>
     <string name="lbl_card_decks">Escolha uma pilha de cartões</string>
+    <string name="lbl_manage_decks">Gerenciamento de pilhas</string>
+    <string name="lbl_bt_add_deck">Adicionar nova pilha</string>
+    <string name="lbl_add_deck">Adicionar pilha\n</string>
+    <string name="lbl_category">Categoria</string>
+    <string name="lbl_bt_add">Adicionar</string>
 </resources>

@@ -5,6 +5,9 @@ import com.example.flashlearn.repository.retrofit.BackendInterface
 import com.example.flashlearn.repository.retrofit.RetrofitInstance
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONObject
 
 class DeckRepository {
     private var client: BackendInterface = RetrofitInstance.api
@@ -17,6 +20,15 @@ class DeckRepository {
             } ?: throw Exception("Não foram encontrados decks")
         } else {
             throw Exception("Falha ao retornar decks: ${response.message()}")
+        }
+    }
+
+    suspend fun createDeck(category: String) {
+        val json = JSONObject().put("category", category).toString()
+        val requestBody = json.toRequestBody("application/json".toMediaTypeOrNull())
+        val response = client.createDeck(requestBody)
+        if (!response.isSuccessful) {
+            throw Exception("Falha ao adicionar deck: ${response.message()}")
         }
     }
 

@@ -20,7 +20,7 @@ import com.example.flashlearn.R
 import com.example.flashlearn.repository.model.Card
 
 @Composable
-fun DeckDetailScreen(
+fun CardsRevisionScreen(
     cards: List<Card>,
     onNavigateUp: () -> Unit = {},
     navController: NavController

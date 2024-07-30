@@ -1,6 +1,6 @@
 package com.example.flashlearn.compose
 
-import DeckDetailScreen
+import CardsRevisionScreen
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -24,6 +24,8 @@ import com.example.flashlearn.repository.model.Card
 @Composable
 fun App(navController: NavHostController = rememberNavController()) {
     val choiceDeckViewModel: ChoiceDeckViewModel = viewModel(factory = AppViewModelProvider.Factory)
+    val manageDecksViewModel: ManageDecksViewModel = viewModel(factory = AppViewModelProvider.Factory)
+    val addDecksViewModel: AddDeckViewModel = viewModel(factory = AppViewModelProvider.Factory)
 
     Scaffold(
         topBar = {
@@ -44,11 +46,11 @@ fun App(navController: NavHostController = rememberNavController()) {
         ) {
             composable("init") {
                 Init(
-                    onStartButtonClicked = { navController.navigate("display-decks") },
+                    onStartButtonClicked = { navController.navigate("choice-deck") },
                     onManageDecksButtonClicked = { navController.navigate("manage-decks") }
                 )
             }
-            composable("display-decks") {
+            composable("choice-deck") {
                 ChoiceDeckScreen(
                     choiceDeckViewModel,
                     onNavigateUp = {
@@ -58,14 +60,15 @@ fun App(navController: NavHostController = rememberNavController()) {
                     },
                     onDeckSelected = { cards ->
                         navController.currentBackStackEntry?.savedStateHandle?.set("cards", cards)
-                        navController.navigate("deck-details")
+                        navController.navigate("cards-revision")
                     }
                 )
             }
-            composable("deck-details") {
-                val cards = navController.previousBackStackEntry?.savedStateHandle?.get<List<Card>>("cards")
+            composable("cards-revision") {
+                val cards =
+                    navController.previousBackStackEntry?.savedStateHandle?.get<List<Card>>("cards")
                 cards?.let {
-                    DeckDetailScreen(
+                    CardsRevisionScreen(
                         cards = it,
                         onNavigateUp = { navController.navigateUp() },
                         navController = navController
@@ -74,10 +77,36 @@ fun App(navController: NavHostController = rememberNavController()) {
             }
             composable("end-revision") {
                 EndRevisionScreen(
-                    onBackToDecks = { navController.navigate("display-decks") }
+                    onBackToDecks = { navController.navigate("choice-deck") }
                 )
             }
-            composable("manage-decks") { }
+            composable("manage-decks") {
+                ManageDecksScreen(
+                    manageDecksViewModel,
+                    onNavigateUp = {
+                        navController.navigate("init") {
+                            popUpTo("init") {
+                                inclusive = true
+                            }
+                        }
+                    },
+                    onAddDeck = {
+                        navController.navigate("add-deck")
+                    },
+                    onDeckSelected = { cards ->
+                        navController.currentBackStackEntry?.savedStateHandle?.set("cards", cards)
+                        navController.navigate("cards-revision")
+                    }
+                )
+            }
+            composable("add-deck") {
+                AddDeckScreen(
+                    addDecksViewModel,
+                    onDeckAdded = {
+                        navController.popBackStack()
+                    }
+                )
+            }
         }
     }
 }

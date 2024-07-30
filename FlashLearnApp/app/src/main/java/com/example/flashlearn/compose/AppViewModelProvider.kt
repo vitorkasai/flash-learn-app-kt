@@ -15,6 +15,12 @@ object AppViewModelProvider {
         initializer {
             ChoiceDeckViewModel(flashLearnApplication().container.deckRepository)
         }
+        initializer {
+            ManageDecksViewModel(flashLearnApplication().container.deckRepository)
+        }
+        initializer {
+            AddDeckViewModel(flashLearnApplication().container.deckRepository)
+        }
     }
 }
 
