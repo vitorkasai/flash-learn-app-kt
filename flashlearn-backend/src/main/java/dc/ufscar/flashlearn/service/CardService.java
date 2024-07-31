@@ -8,6 +8,8 @@ import dc.ufscar.flashlearn.repository.CardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CardService {
@@ -15,14 +17,16 @@ public class CardService {
     private final CardBuilder cardBuilder;
     private final DeckService deckService;
 
+    public List<Card> findCardsByCategory(String category) {
+        return cardRepository.findCardByDeck_CategoryIgnoreCase(category);
+    }
+
     public void createCard(CardDTO cardDTO) {
-        System.out.println(cardDTO.getDeckCategory());
-        System.out.println(cardDTO.getBack());
-        System.out.println(cardDTO.getFront());
         Card cardDomain = cardBuilder.build(cardDTO);
         Deck deckFound = deckService.findDeckByCategory(cardDTO.getDeckCategory());
         cardDomain.setDeck(deckFound);
         cardRepository.save(cardDomain);
     }
+
 
 }

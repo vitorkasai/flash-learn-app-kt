@@ -3,17 +3,23 @@ package dc.ufscar.flashlearn.controller;
 import dc.ufscar.flashlearn.dto.CardDTO;
 import dc.ufscar.flashlearn.service.CardService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 public class CardController {
 
     private final CardService cardService;
+
+    @GetMapping("/card/{category}")
+    public ResponseEntity<?> findCardsByCategory(@PathVariable("category") String category) {
+        log.info("Listando cards por categoria de Deck");
+        return new ResponseEntity<>(cardService.findCardsByCategory(category), HttpStatus.OK);
+    }
 
     @PostMapping("/card")
     public ResponseEntity<?> createCard(@RequestBody CardDTO cardDTO) {

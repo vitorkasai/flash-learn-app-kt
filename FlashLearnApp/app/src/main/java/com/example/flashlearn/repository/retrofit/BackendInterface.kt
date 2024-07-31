@@ -1,11 +1,13 @@
 package com.example.flashlearn.repository.retrofit
 
+import com.example.flashlearn.repository.model.Card
 import com.example.flashlearn.repository.model.Deck
 import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface BackendInterface {
     @GET("deck")
@@ -16,4 +18,7 @@ interface BackendInterface {
 
     @POST("card")
     suspend fun createCard(@Body requestBody: RequestBody): Response<Void>
+
+    @GET("card/{category}")
+    suspend fun findCardsByCategory(@Path("category") category: String) : Response<List<Card>>
 }
