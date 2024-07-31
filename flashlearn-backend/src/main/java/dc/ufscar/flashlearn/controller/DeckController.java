@@ -2,6 +2,7 @@ package dc.ufscar.flashlearn.controller;
 
 import dc.ufscar.flashlearn.dto.CreateDeckDTO;
 import dc.ufscar.flashlearn.dto.DeckDTO;
+import dc.ufscar.flashlearn.repository.DeckRepository;
 import dc.ufscar.flashlearn.service.DeckService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DeckController {
     private final DeckService deckService;
+    private final DeckRepository deckRepository;
 
     @GetMapping("/deck")
     public ResponseEntity<?> findAllDecks() {
@@ -27,9 +29,9 @@ public class DeckController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/deck/{category}")
-    public ResponseEntity<?> deleteDeck(@PathVariable String category) {
-        deckService.deleteDeckByCategory(category);
+    @DeleteMapping("/deck/{id}")
+    public ResponseEntity<?> deleteDeck(@PathVariable Long id) {
+        deckRepository.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

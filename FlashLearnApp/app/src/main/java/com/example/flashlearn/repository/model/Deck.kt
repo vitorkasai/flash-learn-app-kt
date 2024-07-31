@@ -4,7 +4,7 @@ import androidx.room.Entity
 
 @Entity
 data class Deck(
-    val id: Int,
+    val id: Long,
     val category: String,
     val cards: List<Card>
 )

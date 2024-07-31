@@ -32,4 +32,7 @@ class DeckRepository {
         }
     }
 
+    suspend fun deleteDeckById(id: Long) {
+        client.deleteDeckById(id)
+    }
 }

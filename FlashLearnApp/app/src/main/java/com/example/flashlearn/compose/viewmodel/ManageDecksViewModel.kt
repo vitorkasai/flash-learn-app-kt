@@ -20,4 +20,11 @@ class ManageDecksViewModel(private val deckRepository: DeckRepository) : ViewMod
             }
         }
     }
+
+    fun deleteDeck(deckId: Long) {
+        viewModelScope.launch {
+            deckRepository.deleteDeckById(deckId)
+            refreshDecks()
+        }
+    }
 }

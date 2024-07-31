@@ -1,10 +1,6 @@
 package com.example.flashlearn.compose.screen
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
@@ -20,7 +16,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.flashlearn.R
-import com.example.flashlearn.compose.component.DeckItem
 import com.example.flashlearn.compose.viewmodel.ManageDecksViewModel
 
 @Composable
@@ -59,10 +54,28 @@ fun ManageDecksScreen(
         )
         LazyColumn {
             items(manageDecksViewModel.deckList) { deck ->
-                DeckItem(
-                    category = deck.category,
-                    onDeckClick = { onDeckSelected(deck.category) }
-                )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp)
+                ) {
+                    Column(
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text(
+                            text = deck.category,
+                            style = MaterialTheme.typography.headlineSmall
+                        )
+                    }
+                    Button(onClick = { onDeckSelected(deck.category) }) {
+                        Text(text = "Abrir")
+                    }
+                    Spacer(modifier = Modifier.size(8.dp))
+                    Button(onClick = { manageDecksViewModel.deleteDeck(deck.id) }) {
+                        Text(text = "Deletar")
+                    }
+                }
             }
         }
         Spacer(modifier = Modifier.size(20.dp))

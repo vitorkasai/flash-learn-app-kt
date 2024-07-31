@@ -21,8 +21,11 @@ interface BackendInterface {
     suspend fun createCard(@Body requestBody: RequestBody): Response<Void>
 
     @GET("card/{category}")
-    suspend fun findCardsByCategory(@Path("category") category: String) : Response<List<Card>>
+    suspend fun findCardsByCategory(@Path("category") category: String): Response<List<Card>>
 
     @DELETE("card/{id}")
-    suspend fun deleteCardById(@Path("id") id: Long) : Response<Void>
+    suspend fun deleteCardById(@Path("id") id: Long): Response<Void>
+
+    @DELETE("deck/{id}")
+    suspend fun deleteDeckById(@Path("id") id: Long): Response<Void>
 }

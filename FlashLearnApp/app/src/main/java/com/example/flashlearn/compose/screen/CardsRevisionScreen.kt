@@ -54,7 +54,7 @@ fun CardsRevisionScreen(
         if (isBackVisible) {
             Text(
                 text = "Verso: ${currentCard.back}",
-                style = MaterialTheme.typography.bodyMedium
+                style = MaterialTheme.typography.headlineSmall
             )
         }
         Button(
