@@ -9,7 +9,12 @@ import kotlinx.coroutines.launch
 
 class ChoiceDeckViewModel(private val deckRepository: DeckRepository) : ViewModel() {
     var deckList = mutableStateListOf<Deck>()
+
     init {
+        refreshDecks()
+    }
+
+    fun refreshDecks() {
         viewModelScope.launch {
             deckRepository.getAllDecks().collect {
                 deckList.clear()

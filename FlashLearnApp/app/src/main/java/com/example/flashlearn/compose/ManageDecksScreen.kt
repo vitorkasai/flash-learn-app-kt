@@ -18,14 +18,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.flashlearn.R
-import com.example.flashlearn.repository.model.Card
 
 @Composable
 fun ManageDecksScreen(
     manageDecksViewModel: ManageDecksViewModel = viewModel(),
     onNavigateUp: () -> Unit = {},
     onAddDeck: () -> Unit = {},
-    onDeckSelected: (deckName: String, cards: List<Card>) -> Unit
+    onDeckSelected: (deckName: String) -> Unit
 ) {
     LaunchedEffect(Unit) {
         manageDecksViewModel.refreshDecks()
@@ -49,7 +48,7 @@ fun ManageDecksScreen(
             items(manageDecksViewModel.deckList) { deck ->
                 DeckItem(
                     category = deck.category,
-                    onDeckClick = { onDeckSelected(deck.category, deck.cards) }
+                    onDeckClick = { onDeckSelected(deck.category) }
                 )
             }
         }

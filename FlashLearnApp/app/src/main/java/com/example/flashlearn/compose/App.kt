@@ -26,8 +26,8 @@ import com.example.flashlearn.repository.model.Card
 @Composable
 fun App(navController: NavHostController = rememberNavController()) {
     val choiceDeckViewModel: ChoiceDeckViewModel = viewModel(factory = AppViewModelProvider.Factory)
-    val manageDecksViewModel: ManageDecksViewModel =
-        viewModel(factory = AppViewModelProvider.Factory)
+    val manageDecksViewModel: ManageDecksViewModel = viewModel(factory = AppViewModelProvider.Factory)
+    val deckDetailViewModel: DeckDetailViewModel = viewModel(factory = AppViewModelProvider.Factory)
     val addDeckViewModel: AddDeckViewModel = viewModel(factory = AppViewModelProvider.Factory)
     val addCardViewModel: AddCardViewModel = viewModel(factory = AppViewModelProvider.Factory)
 
@@ -97,12 +97,11 @@ fun App(navController: NavHostController = rememberNavController()) {
                     onAddDeck = {
                         navController.navigate("add-deck")
                     },
-                    onDeckSelected = { deckName, cards ->
+                    onDeckSelected = { deckName ->
                         navController.currentBackStackEntry?.savedStateHandle?.set(
                             "deckName",
                             deckName
                         )
-                        navController.currentBackStackEntry?.savedStateHandle?.set("cards", cards)
                         navController.navigate("deck-detail")
                     }
                 )
@@ -117,29 +116,24 @@ fun App(navController: NavHostController = rememberNavController()) {
                 )
             }
             composable("deck-detail") {
-                val deckName =
-                    navController.previousBackStackEntry?.savedStateHandle?.get<String>("deckName")
-                val cards =
-                    navController.previousBackStackEntry?.savedStateHandle?.get<List<Card>>("cards")
-                deckName?.let { name ->
-                    cards?.let {
-                        DeckDetailScreen(
-                            deckName = name,
-                            cards = it,
-                            onNavigateUp = { navController.navigateUp() },
-                            onAddCard = {
-                                navController.navigate("add-card/$name")
-                            }
-                        )
-                    }
+                val deckName = navController.previousBackStackEntry?.savedStateHandle?.get<String>("deckName")
+                deckName?.let { category ->
+                    DeckDetailScreen(
+                        navController,
+                        deckDetailViewModel,
+                        deckName = category,
+                        onNavigateUp = { navController.navigateUp() },
+                        onAddCard = {
+                            navController.navigate("add-card/$category")
+                        }
+                    )
                 }
             }
-            composable(
-                route = "add-card/{category}",
-                arguments = listOf(navArgument("category") { type = NavType.StringType })
+            composable(route = "add-card/{category}", arguments = listOf(navArgument("category") { type = NavType.StringType })
             ) { backStackEntry ->
                 val category = backStackEntry.arguments?.getString("category") ?: ""
                 AddCardScreen(
+                    navController,
                     category = category,
                     onCardAdded = { front, back ->
                         addCardViewModel.addCard(
