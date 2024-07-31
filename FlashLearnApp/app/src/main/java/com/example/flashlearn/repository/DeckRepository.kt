@@ -10,7 +10,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 
 class DeckRepository {
-    private var client: BackendInterface = RetrofitInstance.api
+    var client: BackendInterface = RetrofitInstance.api
 
     suspend fun getAllDecks(): Flow<List<Deck>> = flow {
         val response = client.getAllDecks()
@@ -19,7 +19,8 @@ class DeckRepository {
                 emit(it)
             } ?: throw Exception("Não foram encontrados decks")
         } else {
-            throw Exception("Falha ao retornar decks: ${response.message()}")
+            val errorBody = response.errorBody()?.string() ?: "Falha ao retornar decks"
+            throw Exception("Falha ao retornar decks: $errorBody")
         }
     }
 

@@ -77,6 +77,7 @@ dependencies {
     kapt("androidx.room:room-compiler:$room_version")
 
     testImplementation(libs.junit)
+    testImplementation (libs.mockito.core)
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
     testImplementation("androidx.room:room-testing:$room_version")
     androidTestImplementation("app.cash.turbine:turbine:0.9.0")

@@ -10,7 +10,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 
 class CardRepository {
-    private var client: BackendInterface = RetrofitInstance.api
+    var client: BackendInterface = RetrofitInstance.api
 
     suspend fun getCardsByCategory(category: String): Flow<List<Card>> = flow {
         val response = client.findCardsByCategory(category)
@@ -19,7 +19,8 @@ class CardRepository {
                 emit(it)
             } ?: throw Exception("Não foram encontrados cards")
         } else {
-            throw Exception("Falha ao retornar cards: ${response.message()}")
+            val errorBody = response.errorBody()?.string() ?: "Falha ao retornar cards"
+            throw Exception("Falha ao retornar cards: $errorBody")
         }
     }
     suspend fun createCard(category: String, front : String, back : String) {
