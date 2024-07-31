@@ -47,12 +47,12 @@ fun ManageDecksScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(bottom = 60.dp) // Padding na parte inferior para o botão
+                .padding(bottom = 60.dp)
         ) {
             Text(
                 text = stringResource(id = R.string.lbl_manage_decks),
                 style = MaterialTheme.typography.headlineMedium,
-                modifier = Modifier.padding(16.dp) // Padding para melhor espaçamento
+                modifier = Modifier.padding(16.dp)
             )
             LazyColumn {
                 items(manageDecksViewModel.deckList) { deck ->
@@ -61,14 +61,14 @@ fun ManageDecksScreen(
                             .fillMaxWidth()
                             .padding(8.dp)
                             .background(MaterialTheme.colorScheme.surface)
-                            .clickable { onDeckSelected(deck.category) } // Torna o Card clicável
+                            .clickable { onDeckSelected(deck.category) }
                     ) {
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(16.dp),
                             verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceBetween // Distribui espaço igualmente entre os itens
+                            horizontalArrangement = Arrangement.SpaceBetween
                         ) {
                             Text(
                                 text = deck.category,
@@ -85,12 +85,12 @@ fun ManageDecksScreen(
 
         Row(
             modifier = Modifier
-                .align(Alignment.BottomStart) // Alinha na parte inferior esquerda
-                .padding(bottom = 16.dp, start = 16.dp) // Padding inferior e lateral
+                .align(Alignment.BottomStart)
+                .padding(bottom = 16.dp, start = 16.dp)
         ) {
             Button(
                 onClick = onNavigateUp,
-                modifier = Modifier.padding(end = 8.dp) // Padding direito entre os botões
+                modifier = Modifier.padding(end = 8.dp)
             ) {
                 Text(text = stringResource(id = R.string.lbl_bt_back))
             }

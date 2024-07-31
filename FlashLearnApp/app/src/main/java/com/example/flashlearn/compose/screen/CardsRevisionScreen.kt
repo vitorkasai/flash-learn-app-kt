@@ -1,8 +1,12 @@
 package com.example.flashlearn.compose.screen
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
@@ -38,47 +42,62 @@ fun CardsRevisionScreen(
 
     val currentCard = cards[currentCardIndex]
 
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
+    Box(
+        modifier = Modifier.fillMaxSize()
     ) {
-        Row {
-            Button(onClick = onNavigateUp) {
-                Text(text = stringResource(id = R.string.lbl_bt_quit))
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 60.dp)
+                .align(Alignment.Center)
+                .padding(horizontal = 16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = "Frente: ${currentCard.front}",
+                style = MaterialTheme.typography.headlineMedium
+            )
+            if (isBackVisible) {
+                Text(
+                    text = "Verso: ${currentCard.back}",
+                    style = MaterialTheme.typography.headlineSmall
+                )
             }
             Spacer(modifier = Modifier.size(20.dp))
-        }
-        Text(
-            text = "Frente: ${currentCard.front}",
-            style = MaterialTheme.typography.headlineMedium
-        )
-        if (isBackVisible) {
-            Text(
-                text = "Verso: ${currentCard.back}",
-                style = MaterialTheme.typography.headlineSmall
-            )
-        }
-        Button(
-            onClick = {
-                isBackVisible = !isBackVisible
-                isNextEnabled = true
-            }
-        ) {
-            Text(text = "Virar")
-        }
-        Spacer(modifier = Modifier.size(20.dp))
-        Button(
-            onClick = {
-                if (currentCardIndex < cards.size - 1) {
-                    currentCardIndex++
-                    isBackVisible = false
-                    isNextEnabled = false
-                } else {
-                    navController.navigate("end-revision")
+            Button(
+                onClick = {
+                    isBackVisible = !isBackVisible
+                    isNextEnabled = true
                 }
-            },
-            enabled = isNextEnabled
+            ) {
+                Text(text = "Virar")
+            }
+            Spacer(modifier = Modifier.size(20.dp))
+            Button(
+                onClick = {
+                    if (currentCardIndex < cards.size - 1) {
+                        currentCardIndex++
+                        isBackVisible = false
+                        isNextEnabled = false
+                    } else {
+                        navController.navigate("end-revision")
+                    }
+                },
+                enabled = isNextEnabled
+            ) {
+                Text(text = "Próximo Cartão")
+            }
+        }
+
+        Button(
+            onClick = onNavigateUp,
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(bottom = 16.dp)
+                .fillMaxWidth(0.5f)
         ) {
-            Text(text = "Próximo Cartão")
+            Text(text = stringResource(id = R.string.lbl_bt_quit))
         }
     }
 }

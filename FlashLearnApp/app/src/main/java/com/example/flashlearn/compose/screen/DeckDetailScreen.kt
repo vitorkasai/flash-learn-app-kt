@@ -54,7 +54,7 @@ fun DeckDetailScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(bottom = 80.dp) // Espaço para os botões na parte inferior
+                .padding(bottom = 80.dp)
         ) {
             Text(
                 text = deckName,
@@ -98,27 +98,26 @@ fun DeckDetailScreen(
             }
         }
 
-        // Linha para os botões fixos na parte inferior
         Row(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
-                .padding(bottom = 16.dp) // Padding inferior para espaçamento
+                .padding(bottom = 16.dp)
         ) {
             Button(
                 onClick = onNavigateUp,
                 modifier = Modifier
                     .weight(1f)
-                    .padding(end = 4.dp) // Espaço entre os botões
+                    .padding(end = 4.dp)
             ) {
                 Text(text = "Back")
             }
-            Spacer(modifier = Modifier.width(8.dp)) // Espaço entre os botões
+            Spacer(modifier = Modifier.width(8.dp))
             Button(
                 onClick = onAddCard,
                 modifier = Modifier
                     .weight(1f)
-                    .padding(start = 4.dp) // Espaço entre os botões
+                    .padding(start = 4.dp)
             ) {
                 Text(text = "Add Card")
             }

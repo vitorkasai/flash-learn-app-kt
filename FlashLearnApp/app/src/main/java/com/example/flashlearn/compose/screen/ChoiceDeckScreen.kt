@@ -32,30 +32,29 @@ fun ChoiceDeckScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(8.dp) // Menor padding
+            .padding(8.dp)
     ) {
-        // Remover o botão de voltar do início
 
         Text(
             text = stringResource(id = R.string.lbl_card_decks),
             style = MaterialTheme.typography.headlineSmall,
-            modifier = Modifier.padding(vertical = 8.dp) // Menor padding vertical
+            modifier = Modifier.padding(vertical = 8.dp)
         )
 
         LazyColumn(
-            modifier = Modifier.weight(1f) // Isso faz a LazyColumn ocupar o espaço restante
+            modifier = Modifier.weight(1f)
         ) {
             itemsIndexed(choiceDeckViewModel.deckList) { _, deck ->
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 4.dp) // Menor padding vertical
-                        .clickable { onDeckSelected(deck.cards) } // Torna o Card clicável
+                        .padding(vertical = 4.dp)
+                        .clickable { onDeckSelected(deck.cards) }
                 ) {
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(8.dp) // Menor padding
+                            .padding(8.dp)
                     ) {
                         Text(
                             text = deck.category,
@@ -70,8 +69,8 @@ fun ChoiceDeckScreen(
         Button(
             onClick = { onNavigateUp() },
             modifier = Modifier
-                .align(Alignment.CenterHorizontally) // Alinhar ao centro horizontalmente
-                .padding(vertical = 16.dp) // Padding para separar do conteúdo acima
+                .align(Alignment.CenterHorizontally)
+                .padding(vertical = 16.dp)
         ) {
             Text(text = stringResource(id = R.string.lbl_bt_back_homescreen))
         }
