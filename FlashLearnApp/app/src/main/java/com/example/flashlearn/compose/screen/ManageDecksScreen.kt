@@ -75,7 +75,7 @@ fun ManageDecksScreen(
                                 style = MaterialTheme.typography.headlineSmall
                             )
                             Button(onClick = { manageDecksViewModel.deleteDeck(deck.id) }) {
-                                Text(text = "Deletar")
+                                Text(text = stringResource(id = R.string.lbl_bt_delete))
                             }
                         }
                     }

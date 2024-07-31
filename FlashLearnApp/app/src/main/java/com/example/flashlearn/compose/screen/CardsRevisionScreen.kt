@@ -71,7 +71,7 @@ fun CardsRevisionScreen(
                     isNextEnabled = true
                 }
             ) {
-                Text(text = "Virar")
+                Text(text = stringResource(id = R.string.lbl_bt_flip))
             }
             Spacer(modifier = Modifier.size(20.dp))
             Button(
@@ -86,7 +86,7 @@ fun CardsRevisionScreen(
                 },
                 enabled = isNextEnabled
             ) {
-                Text(text = "Próximo Cartão")
+                Text(text = stringResource(id = R.string.lbl_bt_next_card))
             }
         }
 

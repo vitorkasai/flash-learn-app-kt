@@ -131,9 +131,7 @@ fun App(navController: NavHostController = rememberNavController()) {
                         deckDetailViewModel,
                         deckName = category,
                         onNavigateUp = { navController.navigateUp() },
-                        onAddCard = {
-                            navController.navigate("add-card/$category")
-                        }
+                        onAddCard = { navController.navigate("add-card/$category") }
                     )
                 }
             }

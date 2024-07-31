@@ -21,9 +21,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.flashlearn.R
 import com.example.flashlearn.compose.viewmodel.DeckDetailViewModel
 
 @Composable
@@ -88,7 +90,7 @@ fun DeckDetailScreen(
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Row {
                                     Button(onClick = { viewModel.deleteCard(card.id) }) {
-                                        Text(text = "Delete")
+                                        Text(text = stringResource(id = R.string.lbl_bt_delete))
                                     }
                                 }
                             }
@@ -110,7 +112,7 @@ fun DeckDetailScreen(
                     .weight(1f)
                     .padding(end = 4.dp)
             ) {
-                Text(text = "Back")
+                Text(text = stringResource(id = R.string.lbl_bt_back))
             }
             Spacer(modifier = Modifier.width(8.dp))
             Button(
@@ -119,7 +121,7 @@ fun DeckDetailScreen(
                     .weight(1f)
                     .padding(start = 4.dp)
             ) {
-                Text(text = "Add Card")
+                Text(text = stringResource(id = R.string.lbl_bt_add_card))
             }
         }
     }
