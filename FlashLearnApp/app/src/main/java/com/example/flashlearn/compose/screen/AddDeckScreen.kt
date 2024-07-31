@@ -1,4 +1,4 @@
-package com.example.flashlearn.compose
+package com.example.flashlearn.compose.screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,6 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.flashlearn.R
+import com.example.flashlearn.compose.viewmodel.AddDeckViewModel
 
 @Composable
 fun AddDeckScreen(

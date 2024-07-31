@@ -1,4 +1,4 @@
-package com.example.flashlearn.compose
+package com.example.flashlearn.compose.viewmodel
 
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel

@@ -1,4 +1,4 @@
-package com.example.flashlearn.compose
+package com.example.flashlearn.compose.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

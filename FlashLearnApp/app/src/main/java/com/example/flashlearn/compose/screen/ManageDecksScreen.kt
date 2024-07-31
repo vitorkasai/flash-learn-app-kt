@@ -1,4 +1,4 @@
-package com.example.flashlearn.compose
+package com.example.flashlearn.compose.screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,22 +12,35 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.flashlearn.R
+import com.example.flashlearn.compose.component.DeckItem
+import com.example.flashlearn.compose.viewmodel.ManageDecksViewModel
 
 @Composable
 fun ManageDecksScreen(
+    navController: NavController,
     manageDecksViewModel: ManageDecksViewModel = viewModel(),
     onNavigateUp: () -> Unit = {},
     onAddDeck: () -> Unit = {},
     onDeckSelected: (deckName: String) -> Unit
 ) {
-    LaunchedEffect(Unit) {
+    val deckAdded = navController.currentBackStackEntry
+        ?.savedStateHandle
+        ?.getLiveData<Boolean>("deckAdded")
+        ?.observeAsState()
+
+    LaunchedEffect(Unit, deckAdded?.value) {
         manageDecksViewModel.refreshDecks()
+        if (deckAdded?.value == true) {
+            navController.currentBackStackEntry?.savedStateHandle?.set("deckAdded", false)
+        }
     }
 
     Column(

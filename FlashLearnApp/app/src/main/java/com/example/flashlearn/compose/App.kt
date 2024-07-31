@@ -1,6 +1,6 @@
 package com.example.flashlearn.compose
 
-import CardsRevisionScreen
+import com.example.flashlearn.compose.screen.CardsRevisionScreen
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -20,6 +20,17 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.flashlearn.R
+import com.example.flashlearn.compose.screen.AddCardScreen
+import com.example.flashlearn.compose.screen.AddDeckScreen
+import com.example.flashlearn.compose.screen.ChoiceDeckScreen
+import com.example.flashlearn.compose.screen.DeckDetailScreen
+import com.example.flashlearn.compose.screen.EndRevisionScreen
+import com.example.flashlearn.compose.screen.ManageDecksScreen
+import com.example.flashlearn.compose.viewmodel.AddCardViewModel
+import com.example.flashlearn.compose.viewmodel.AddDeckViewModel
+import com.example.flashlearn.compose.viewmodel.ChoiceDeckViewModel
+import com.example.flashlearn.compose.viewmodel.DeckDetailViewModel
+import com.example.flashlearn.compose.viewmodel.ManageDecksViewModel
 import com.example.flashlearn.repository.model.Card
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -86,6 +97,7 @@ fun App(navController: NavHostController = rememberNavController()) {
             }
             composable("manage-decks") {
                 ManageDecksScreen(
+                    navController,
                     manageDecksViewModel,
                     onNavigateUp = {
                         navController.navigate("init") {
@@ -94,14 +106,9 @@ fun App(navController: NavHostController = rememberNavController()) {
                             }
                         }
                     },
-                    onAddDeck = {
-                        navController.navigate("add-deck")
-                    },
+                    onAddDeck = { navController.navigate("add-deck") },
                     onDeckSelected = { deckName ->
-                        navController.currentBackStackEntry?.savedStateHandle?.set(
-                            "deckName",
-                            deckName
-                        )
+                        navController.currentBackStackEntry?.savedStateHandle?.set("deckName", deckName)
                         navController.navigate("deck-detail")
                     }
                 )
@@ -111,7 +118,8 @@ fun App(navController: NavHostController = rememberNavController()) {
                     addDeckViewModel,
                     onNavigateBack = { navController.navigateUp() },
                     onDeckAdded = {
-                        navController.popBackStack()
+                        navController.previousBackStackEntry?.savedStateHandle?.set("deckAdded", true)
+                        navController.navigateUp()
                     }
                 )
             }

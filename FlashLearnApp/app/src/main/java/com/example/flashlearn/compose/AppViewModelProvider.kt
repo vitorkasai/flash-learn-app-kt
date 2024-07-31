@@ -5,6 +5,11 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.flashlearn.FlashLearnApplication
+import com.example.flashlearn.compose.viewmodel.AddCardViewModel
+import com.example.flashlearn.compose.viewmodel.AddDeckViewModel
+import com.example.flashlearn.compose.viewmodel.ChoiceDeckViewModel
+import com.example.flashlearn.compose.viewmodel.DeckDetailViewModel
+import com.example.flashlearn.compose.viewmodel.ManageDecksViewModel
 
 
 /**

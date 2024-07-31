@@ -1,4 +1,4 @@
-package com.example.flashlearn.compose
+package com.example.flashlearn.compose.screen
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.flashlearn.compose.viewmodel.DeckDetailViewModel
 
 @Composable
 fun DeckDetailScreen(
@@ -19,16 +20,14 @@ fun DeckDetailScreen(
     onNavigateUp: () -> Unit,
     onAddCard: () -> Unit
 ) {
-    // Observe changes to cardAdded in the saved state handle
+
     val cardAdded = navController.currentBackStackEntry
         ?.savedStateHandle
         ?.getLiveData<Boolean>("cardAdded")
         ?.observeAsState()
 
-    // Trigger card loading when the screen is first loaded or a card is added
     LaunchedEffect(deckName, cardAdded?.value) {
         viewModel.refreshCards(deckName)
-        // Reset the cardAdded flag to avoid redundant refreshes
         if (cardAdded?.value == true) {
             navController.currentBackStackEntry?.savedStateHandle?.set("cardAdded", false)
         }
