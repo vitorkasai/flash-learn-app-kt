@@ -22,7 +22,6 @@ class CardRepository {
             throw Exception("Falha ao retornar cards: ${response.message()}")
         }
     }
-
     suspend fun createCard(category: String, front : String, back : String) {
         val json = JSONObject()
             .put("deckCategory", category)
@@ -35,6 +34,10 @@ class CardRepository {
         if (!response.isSuccessful) {
             throw Exception("Falha ao adicionar card: ${response.message()}")
         }
+    }
+
+    suspend fun deleteCardById(id: Long) {
+       client.deleteCardById(id)
     }
 
 }

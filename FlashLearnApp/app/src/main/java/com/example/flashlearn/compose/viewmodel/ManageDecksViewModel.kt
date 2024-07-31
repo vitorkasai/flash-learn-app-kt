@@ -9,11 +9,9 @@ import kotlinx.coroutines.launch
 
 class ManageDecksViewModel(private val deckRepository: DeckRepository) : ViewModel() {
     var deckList = mutableStateListOf<Deck>()
-
     init {
         refreshDecks()
     }
-
     fun refreshDecks() {
         viewModelScope.launch {
             deckRepository.getAllDecks().collect {

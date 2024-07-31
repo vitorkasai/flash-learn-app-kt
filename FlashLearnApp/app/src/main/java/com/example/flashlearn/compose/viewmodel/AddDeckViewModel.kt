@@ -6,7 +6,6 @@ import com.example.flashlearn.repository.DeckRepository
 import kotlinx.coroutines.launch
 
 class AddDeckViewModel(private val deckRepository: DeckRepository) : ViewModel() {
-
     fun addDeck(category: String) {
         viewModelScope.launch {
             try {

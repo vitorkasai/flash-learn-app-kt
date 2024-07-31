@@ -4,7 +4,7 @@ import androidx.room.Entity
 
 @Entity
 data class Card(
-    val id: Int = 0,
+    val id: Long = 0,
     val front: String,
     val back: String
 )

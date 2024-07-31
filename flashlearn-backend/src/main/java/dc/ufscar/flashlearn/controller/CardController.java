@@ -27,4 +27,10 @@ public class CardController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @DeleteMapping("/card/{id}")
+    public ResponseEntity<?> deleteCard(@PathVariable("id") Long id) {
+        cardService.deleteCardById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

@@ -28,5 +28,9 @@ public class CardService {
         cardRepository.save(cardDomain);
     }
 
+    public void deleteCardById(Long id) {
+        cardRepository.deleteById(id);
+    }
+
 
 }
