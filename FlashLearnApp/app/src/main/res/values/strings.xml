@@ -6,7 +6,7 @@
     <string name="lbl_bt_quit">Sair da revisão</string>
     <string name="lbl_bt_back_homescreen">Voltar para a tela inicial</string>
     <string name="lbl_welcome_msg">Bem-vindo ao Flash Learn App, aqui você pode usar flash cards virtuais para estudos e memorização</string>
-    <string name="end_revision">Fim da revisão</string>
+    <string name="end_revision">Fim da revisão!</string>
     <string name="return_to_decks">Voltar para visualizar as pilhas</string>
     <string name="lbl_card_decks">Escolha uma pilha de cartões</string>
     <string name="lbl_manage_decks">Gerenciamento de pilhas</string>

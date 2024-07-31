@@ -5,21 +5,21 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.flashlearn.R
 import com.example.flashlearn.compose.viewmodel.ManageDecksViewModel
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 
 @Composable
 fun ManageDecksScreen(
@@ -74,8 +74,11 @@ fun ManageDecksScreen(
                                 text = deck.category,
                                 style = MaterialTheme.typography.headlineSmall
                             )
-                            Button(onClick = { manageDecksViewModel.deleteDeck(deck.id) }) {
-                                Text(text = stringResource(id = R.string.lbl_bt_delete))
+                            IconButton(onClick = { manageDecksViewModel.deleteDeck(deck.id) }) {
+                                Icon(
+                                    imageVector = Icons.Default.Delete,
+                                    contentDescription = stringResource(id = R.string.lbl_bt_delete)
+                                )
                             }
                         }
                     }
