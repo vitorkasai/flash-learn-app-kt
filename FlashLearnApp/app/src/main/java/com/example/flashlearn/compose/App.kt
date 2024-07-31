@@ -141,14 +141,9 @@ fun App(navController: NavHostController = rememberNavController()) {
             ) { backStackEntry ->
                 val category = backStackEntry.arguments?.getString("category") ?: ""
                 AddCardScreen(
-                    navController,
-                    category = category,
                     onCardAdded = { front, back ->
-                        addCardViewModel.addCard(
-                            category,
-                            front,
-                            back
-                        )
+                        addCardViewModel.addCard(category, front, back)
+                        navController.previousBackStackEntry?.savedStateHandle?.set("cardAdded", true)
                     },
                     onNavigateUp = { navController.navigateUp() }
                 )

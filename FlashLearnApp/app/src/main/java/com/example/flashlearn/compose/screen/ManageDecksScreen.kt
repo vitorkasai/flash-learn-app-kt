@@ -1,9 +1,12 @@
 package com.example.flashlearn.compose.screen
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -38,50 +41,62 @@ fun ManageDecksScreen(
         }
     }
 
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
+    Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        Row {
-            Button(onClick = onNavigateUp) {
-                Text(text = stringResource(id = R.string.lbl_bt_back))
-            }
-            Spacer(modifier = Modifier.size(20.dp))
-        }
-        Text(
-            text = stringResource(id = R.string.lbl_manage_decks),
-            style = MaterialTheme.typography.headlineMedium
-        )
-        LazyColumn {
-            items(manageDecksViewModel.deckList) { deck ->
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(8.dp)
-                ) {
-                    Column(
-                        modifier = Modifier.weight(1f)
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 60.dp) // Padding na parte inferior para o botão
+        ) {
+            Text(
+                text = stringResource(id = R.string.lbl_manage_decks),
+                style = MaterialTheme.typography.headlineMedium,
+                modifier = Modifier.padding(16.dp) // Padding para melhor espaçamento
+            )
+            LazyColumn {
+                items(manageDecksViewModel.deckList) { deck ->
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(8.dp)
+                            .background(MaterialTheme.colorScheme.surface)
+                            .clickable { onDeckSelected(deck.category) } // Torna o Card clicável
                     ) {
-                        Text(
-                            text = deck.category,
-                            style = MaterialTheme.typography.headlineSmall
-                        )
-                    }
-                    Button(onClick = { onDeckSelected(deck.category) }) {
-                        Text(text = "Abrir")
-                    }
-                    Spacer(modifier = Modifier.size(8.dp))
-                    Button(onClick = { manageDecksViewModel.deleteDeck(deck.id) }) {
-                        Text(text = "Deletar")
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.SpaceBetween // Distribui espaço igualmente entre os itens
+                        ) {
+                            Text(
+                                text = deck.category,
+                                style = MaterialTheme.typography.headlineSmall
+                            )
+                            Button(onClick = { manageDecksViewModel.deleteDeck(deck.id) }) {
+                                Text(text = "Deletar")
+                            }
+                        }
                     }
                 }
             }
         }
-        Spacer(modifier = Modifier.size(20.dp))
 
-        Button(onClick = onAddDeck) {
-            Text(text = stringResource(id = R.string.lbl_bt_add_deck))
+        Row(
+            modifier = Modifier
+                .align(Alignment.BottomStart) // Alinha na parte inferior esquerda
+                .padding(bottom = 16.dp, start = 16.dp) // Padding inferior e lateral
+        ) {
+            Button(
+                onClick = onNavigateUp,
+                modifier = Modifier.padding(end = 8.dp) // Padding direito entre os botões
+            ) {
+                Text(text = stringResource(id = R.string.lbl_bt_back))
+            }
+            Button(onClick = onAddDeck) {
+                Text(text = stringResource(id = R.string.lbl_bt_add_deck))
+            }
         }
     }
 }

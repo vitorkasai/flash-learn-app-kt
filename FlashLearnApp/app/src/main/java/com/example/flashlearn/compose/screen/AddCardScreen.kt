@@ -10,8 +10,6 @@ import androidx.navigation.NavController
 
 @Composable
 fun AddCardScreen(
-    navController: NavController,
-    category: String,
     onCardAdded: (front: String, back: String) -> Unit,
     onNavigateUp: () -> Unit
 ) {
@@ -44,7 +42,6 @@ fun AddCardScreen(
             onClick = {
                 if (front.isNotBlank() && back.isNotBlank()) {
                     onCardAdded(front, back)
-                    navController.previousBackStackEntry?.savedStateHandle?.set("cardAdded", true)
                     onNavigateUp()
                 }
             }
