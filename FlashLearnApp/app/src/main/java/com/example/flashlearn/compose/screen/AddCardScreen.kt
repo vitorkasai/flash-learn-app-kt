@@ -34,7 +34,7 @@ fun AddCardScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Button(onClick = onNavigateUp) {
-            Text(text = stringResource(id = R.string.lbl_card_back))
+            Text(text = stringResource(id = R.string.lbl_bt_back))
         }
         Spacer(modifier = Modifier.height(16.dp))
         TextField(
@@ -46,7 +46,7 @@ fun AddCardScreen(
         TextField(
             value = back,
             onValueChange = { back = it },
-            label = { Text(text = stringResource(id = R.string.lbl_bt_back)) }
+            label = { Text(text = stringResource(id = R.string.lbl_card_back)) }
         )
         Spacer(modifier = Modifier.height(16.dp))
         Button(

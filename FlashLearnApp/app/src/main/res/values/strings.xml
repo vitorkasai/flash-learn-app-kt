@@ -16,8 +16,8 @@
     <string name="lbl_bt_add">Adicionar</string>
     <string name="lbl_bt_delete">Deletar</string>
     <string name="lbl_card_front">Frente</string>
-    <string name="lbl_card_back">Frente</string>
     <string name="lbl_bt_add_card">Adicionar Cartão</string>
     <string name="lbl_bt_flip">Virar</string>
     <string name="lbl_bt_next_card">Próximo Cartão</string>
+    <string name="lbl_card_back">Verso</string>
 </resources>
