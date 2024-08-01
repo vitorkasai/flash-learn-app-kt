@@ -60,7 +60,6 @@ fun ManageDecksScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(8.dp)
-                            .background(MaterialTheme.colorScheme.surface)
                             .clickable { onDeckSelected(deck.category) }
                     ) {
                         Row(
@@ -85,11 +84,11 @@ fun ManageDecksScreen(
                 }
             }
         }
-
         Row(
             modifier = Modifier
                 .align(Alignment.BottomStart)
-                .padding(bottom = 16.dp, start = 16.dp)
+                .padding(bottom = 16.dp, start = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(32.dp)
         ) {
             Button(
                 onClick = { navController.navigate("init") },

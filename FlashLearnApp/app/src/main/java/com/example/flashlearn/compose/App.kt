@@ -99,13 +99,7 @@ fun App(navController: NavHostController = rememberNavController()) {
                 ManageDecksScreen(
                     navController,
                     manageDecksViewModel,
-                    onNavigateUp = {
-                        navController.navigate("init") {
-                            popUpTo("init") {
-                                inclusive = true
-                            }
-                        }
-                    },
+                    onNavigateUp = { navController.navigate("init") },
                     onAddDeck = { navController.navigate("add-deck") },
                     onDeckSelected = { deckName ->
                         navController.currentBackStackEntry?.savedStateHandle?.set("deckName", deckName)
@@ -117,9 +111,7 @@ fun App(navController: NavHostController = rememberNavController()) {
                 AddDeckScreen(
                     addDeckViewModel,
                     onNavigateBack = { navController.navigateUp() },
-                    onDeckAdded = {
-                        navController.navigate("manage-decks")
-                    }
+                    onDeckAdded = { navController.navigate("manage-decks") }
                 )
             }
             composable("deck-detail") {

@@ -30,7 +30,6 @@ class CardRepositoryTest {
 
     @Test
     fun getCardsByCategoryTest() = runTest {
-        // Prepare data
         val category = "Science"
         val mockCards = listOf(
             Card(id = 1, front = "Front 1", back = "Back 1"),
@@ -47,20 +46,16 @@ class CardRepositoryTest {
 
     @Test
     fun `getCardsByCategory should throw an exception on failure`() = runTest {
-        // Preparar dados
         val category = "Science"
         val errorMessage = "Error"
 
-        // Simular resposta com falha
         Mockito.`when`(mockBackendInterface.findCardsByCategory(category))
             .thenReturn(Response.error(400, ResponseBody.create(null, errorMessage)))
 
         try {
-            // Chamar o método a ser testado
             cardRepository.getCardsByCategory(category).toList()
             fail("Exception expected but not thrown")
         } catch (e: Exception) {
-            // Verificar se a exceção esperada foi lançada
             val expectedMessage = "Falha ao retornar cards: $errorMessage"
             assertEquals(expectedMessage, e.message)
         }

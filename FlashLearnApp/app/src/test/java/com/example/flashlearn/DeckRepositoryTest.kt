@@ -32,7 +32,6 @@ class DeckRepositoryTest {
 
     @Test
     fun `getAllDecks should return decks successfully`() = runTest {
-        // Prepare data
         val mockCards = listOf(
             Card(id = 1, front = "Front1", back = "Back1"),
             Card(id = 2, front = "Front2", back = "Back2")
@@ -42,32 +41,25 @@ class DeckRepositoryTest {
             Deck(id = 2, category = "Math", cards = mockCards)
         )
 
-        // Simular resposta bem-sucedida
         Mockito.`when`(mockBackendInterface.getAllDecks())
             .thenReturn(Response.success(mockDecks))
 
-        // Chamar o método a ser testado
         val result = deckRepository.getAllDecks().toList()
 
-        // Verificar resultados
         assertEquals(mockDecks, result.first())
     }
 
     @Test
     fun `getAllDecks should throw an exception on failure`() = runTest {
-        // Preparar dados
         val errorMessage = "Error"
 
-        // Simular resposta com falha
         Mockito.`when`(mockBackendInterface.getAllDecks())
             .thenReturn(Response.error(400, ResponseBody.create(null, errorMessage)))
 
         try {
-            // Chamar o método a ser testado
             deckRepository.getAllDecks().toList()
             fail("Exception expected but not thrown")
         } catch (e: Exception) {
-            // Verificar se a exceção esperada foi lançada
             val expectedMessage = "Falha ao retornar decks: $errorMessage"
             assertEquals(expectedMessage, e.message)
         }
