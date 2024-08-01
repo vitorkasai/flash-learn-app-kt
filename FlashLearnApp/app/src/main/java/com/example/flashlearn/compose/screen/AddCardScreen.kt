@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -33,10 +34,13 @@ fun AddCardScreen(
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Button(onClick = onNavigateUp) {
-            Text(text = stringResource(id = R.string.lbl_bt_back))
-        }
-        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            text = stringResource(id = R.string.lbl_add_card_instruction),
+            style = MaterialTheme.typography.headlineMedium,
+            modifier = Modifier
+                .padding(bottom = 16.dp)
+                .align(Alignment.CenterHorizontally)
+        )
         TextField(
             value = front,
             onValueChange = { front = it },
@@ -58,6 +62,10 @@ fun AddCardScreen(
             }
         ) {
             Text(text = stringResource(id = R.string.lbl_bt_add_card))
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        Button(onClick = onNavigateUp) {
+            Text(text = stringResource(id = R.string.lbl_bt_back))
         }
     }
 }

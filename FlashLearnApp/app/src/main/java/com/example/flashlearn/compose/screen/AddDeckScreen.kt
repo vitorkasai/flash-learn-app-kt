@@ -1,16 +1,18 @@
 package com.example.flashlearn.compose.screen
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -29,14 +31,10 @@ fun AddDeckScreen(
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
     ) {
-        Row {
-            Button(onClick = onNavigateBack) {
-                Text(text = stringResource(id = R.string.lbl_bt_back))
-            }
-            Spacer(modifier = Modifier.size(20.dp))
-        }
         Text(
             text = stringResource(id = R.string.lbl_add_deck),
             style = MaterialTheme.typography.headlineMedium
@@ -45,14 +43,21 @@ fun AddDeckScreen(
             value = category,
             onValueChange = { category = it },
             label = { Text(stringResource(id = R.string.lbl_category)) },
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(bottom = 16.dp)
         )
-        Spacer(modifier = Modifier.size(20.dp))
-        Button(onClick = {
-            addDeckViewModel.addDeck(category)
-            onDeckAdded()
-        }) {
-            Text(text = stringResource(id = R.string.lbl_bt_add))
+        Column(
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Button(onClick = {
+                addDeckViewModel.addDeck(category)
+                onDeckAdded()
+            }) {
+                Text(text = stringResource(id = R.string.lbl_bt_add))
+            }
+            Button(onClick = onNavigateBack) {
+                Text(text = stringResource(id = R.string.lbl_bt_back))
+            }
         }
     }
 }

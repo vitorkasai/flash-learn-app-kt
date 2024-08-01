@@ -81,12 +81,12 @@ fun DeckDetailScreen(
                                 ) {
                                     Column {
                                         Text(
-                                            text = stringResource(id = R.string.lbl_card_front, card.front),
+                                            text = stringResource(id = R.string.lbl_card_front) + ": " + card.front,
                                             style = MaterialTheme.typography.bodyLarge
                                         )
                                         Spacer(modifier = Modifier.height(8.dp))
                                         Text(
-                                            text = stringResource(id = R.string.lbl_card_back, card.back),
+                                            text = stringResource(id = R.string.lbl_card_back) + ": " + card.back,
                                             style = MaterialTheme.typography.bodyLarge
                                         )
                                     }

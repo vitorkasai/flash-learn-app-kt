@@ -72,7 +72,7 @@ fun ManageDecksScreen(
                         ) {
                             Text(
                                 text = deck.category,
-                                style = MaterialTheme.typography.headlineSmall
+                                style = MaterialTheme.typography.titleLarge
                             )
                             IconButton(onClick = { manageDecksViewModel.deleteDeck(deck.id) }) {
                                 Icon(
