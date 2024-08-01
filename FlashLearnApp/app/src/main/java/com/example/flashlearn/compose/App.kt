@@ -118,8 +118,7 @@ fun App(navController: NavHostController = rememberNavController()) {
                     addDeckViewModel,
                     onNavigateBack = { navController.navigateUp() },
                     onDeckAdded = {
-                        navController.previousBackStackEntry?.savedStateHandle?.set("deckAdded", true)
-                        navController.navigateUp()
+                        navController.navigate("manage-decks")
                     }
                 )
             }
