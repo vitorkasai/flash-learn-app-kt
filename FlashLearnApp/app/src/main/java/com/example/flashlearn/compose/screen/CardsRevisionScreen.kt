@@ -55,12 +55,12 @@ fun CardsRevisionScreen(
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Frente: ${currentCard.front}",
+                text = stringResource(id = R.string.lbl_card_front) + ": " + currentCard.front,
                 style = MaterialTheme.typography.headlineMedium
             )
             if (isBackVisible) {
                 Text(
-                    text = "Verso: ${currentCard.back}",
+                    text = stringResource(id = R.string.lbl_card_back) + ": " + currentCard.back,
                     style = MaterialTheme.typography.headlineSmall
                 )
             }

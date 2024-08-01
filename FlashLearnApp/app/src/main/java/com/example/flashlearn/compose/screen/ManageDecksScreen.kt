@@ -92,10 +92,10 @@ fun ManageDecksScreen(
                 .padding(bottom = 16.dp, start = 16.dp)
         ) {
             Button(
-                onClick = onNavigateUp,
+                onClick = { navController.navigate("init") },
                 modifier = Modifier.padding(end = 8.dp)
             ) {
-                Text(text = stringResource(id = R.string.lbl_bt_back))
+                Text(text = stringResource(id = R.string.lbl_bt_back_homescreen))
             }
             Button(onClick = onAddDeck) {
                 Text(text = stringResource(id = R.string.lbl_bt_add_deck))

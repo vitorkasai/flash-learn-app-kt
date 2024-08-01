@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Flash Learn App</string>
+    <string name="lbl_bt_start_revision">Start Revision</string>
+    <string name="lbl_bt_manage_decks">Manage Decks</string>
+    <string name="lbl_bt_back">Back</string>
+    <string name="lbl_bt_quit">Quit Revision</string>
+    <string name="lbl_bt_back_homescreen">Back to Home Screen</string>
+    <string name="lbl_welcome_msg">Welcome to Flash Learn App, where you can use virtual flashcards for study and memorization</string>
+    <string name="end_revision">End of Revision!</string>
+    <string name="return_to_decks">Return to View Decks</string>
+    <string name="lbl_card_decks">Choose a Card Deck</string>
+    <string name="lbl_manage_decks">Deck Management</string>
+    <string name="lbl_bt_add_deck">New Deck</string>
+    <string name="lbl_add_deck">Add Deck\n</string>
+    <string name="lbl_category">Category</string>
+    <string name="lbl_bt_add">Add</string>
+    <string name="lbl_bt_delete">Delete</string>
+    <string name="lbl_card_front">Front</string>
+    <string name="lbl_bt_add_card">Add Card</string>
+    <string name="lbl_bt_flip">Flip</string>
+    <string name="lbl_bt_next_card">Next Card</string>
+    <string name="lbl_card_back">Back</string>
+    <string name="lbl_add_card_instruction">Enter Card Text</string>
+</resources>
