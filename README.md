@@ -12,6 +12,10 @@ Este projeto trata-se da atividade avaliativa 1 para a disciplina de Desenvolvim
 
 ## Instruções para Rodar
 
+### Banco de dados (MYSQL)
+1. Criar schema com o nome flashlearn.
+2. Rodar script de criação das tabelas (script está no repositório).
+
 ### Backend
 
 1. É necessário ter o Java 17 instalado.
