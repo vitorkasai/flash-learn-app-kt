@@ -17,7 +17,7 @@ Este projeto trata-se da atividade avaliativa 1 para a disciplina de Desenvolvim
 2. Rodar script de criação das tabelas (script está no repositório).
 
 ### Backend
-
+Link para o repositório do backend do projeto: https://github.com/vitorkasai/flash-learn-backend
 1. É necessário ter o Java 17 instalado.
 2. Crie uma instância do MySQL e configure-a de acordo com as necessidades do seu projeto.
 3. Utilize o Maven para rodar o backend.
